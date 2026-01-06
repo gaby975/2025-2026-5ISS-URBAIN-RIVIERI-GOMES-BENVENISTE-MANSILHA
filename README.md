@@ -13,4 +13,18 @@ The manufacturing process for this sensor involves a large number of steps, but 
 
 ![gas sensor process](images/sensor-process.png)
 
+## Simulation on LTspice
+
+## PCB design on KiCad
+
+## Fabrication of the Shield
+
+## Embedded code
+
+## Sending data with LoRa
+
+## NodeRed
+
+## Conclusion
+
 
