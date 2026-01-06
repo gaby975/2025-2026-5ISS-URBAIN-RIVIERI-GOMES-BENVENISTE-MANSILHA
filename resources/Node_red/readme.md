@@ -1,4 +1,4 @@
-# Node-RED v2 — MQTT (ChirpStack) → extraction `data` → décodage Base64 → valeur décimale → Dashboard + alerte
+# Node-RED MQTT (ChirpStack)
 
 Ce flow Node-RED écoute un topic MQTT (uplinks ChirpStack), **extrait le champ `data`**, le **décode du Base64** puis le **convertit en nombre base 10**. La valeur est affichée sur un **dashboard** (jauge + historique). Une alerte **“DANGER!”** (texte + audio) est déclenchée au-dessus d’un seuil. 
 
