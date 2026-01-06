@@ -7,3 +7,6 @@ The first step in this project is to manufacture a gas sensor. This sensor was m
 
 The sensor is composed of several elements that are worth detailing. First, there are interdigitated aluminum combs on which WO₃ nanoparticles have been deposited and organized by dielectrophoresis. Next, there is an n-doped polysilicon heating resistor, which raises the temperature inside the sensor, improving the surface reaction between the WO₃ nanoparticles and the gas. Finally, there is an aluminum thermistor that measures the temperature inside the sensor.
 
+![gas sensor](images/image.png)
+
+
