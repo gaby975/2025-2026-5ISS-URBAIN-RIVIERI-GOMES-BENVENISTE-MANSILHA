@@ -1,13 +1,13 @@
 # Node-RED v2 — MQTT (ChirpStack) → extraction `data` → décodage Base64 → valeur décimale → Dashboard + alerte
 
-Ce flow Node-RED écoute un topic MQTT (uplinks ChirpStack), **extrait le champ `data`**, le **décode du Base64** puis le **convertit en nombre base 10**. La valeur est affichée sur un **dashboard** (jauge + historique). Une alerte **“DANGER!”** (texte + audio) est déclenchée au-dessus d’un seuil. :contentReference[oaicite:0]{index=0}
+Ce flow Node-RED écoute un topic MQTT (uplinks ChirpStack), **extrait le champ `data`**, le **décode du Base64** puis le **convertit en nombre base 10**. La valeur est affichée sur un **dashboard** (jauge + historique). Une alerte **“DANGER!”** (texte + audio) est déclenchée au-dessus d’un seuil. 
 
 ## Fonctionnalités
 
 - **MQTT In**
   - Broker : `srv-chirpstack.insa-toulouse.fr:1883`
   - Topic : `application/2fc05488-1aaa-49cf-a35a-cf58fae84647/device/0004a30b0110c16d/event/#`
-  - QoS : `2` :contentReference[oaicite:3]{index=3}
+  - QoS : `2` 
 - **Décodage**
   - Extraction de `payload.data`
   - `Base64 -> UTF-8 -> Number (base 10)` 
