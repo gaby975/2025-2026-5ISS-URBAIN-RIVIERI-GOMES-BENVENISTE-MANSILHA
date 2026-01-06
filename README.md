@@ -14,6 +14,20 @@ The manufacturing process for this sensor involves a large number of steps, but 
 ![gas sensor process](images/sensor-process.png)
 
 ## Simulation on LTspice
+As part of this project, one part was dedicated to designing a stage for conditioning/amplifying the signal delivered by the gas sensor. This signal, which is processed by the ESP32-WROOM microcontroller ADC, must be readable and processable by the latter. To do this, the conditioning stage was designed around the component LTC1050, which was used because It has a really low input voltage offset as well as a good common-mode tolerance and relatively low voltage drift maintain the integrity and accuracy of the 10mV voltage measured at the terminals of R1. This is the schematic we get on LTSpice:
+
+![ltspice_trans_impedance_amplifier](images/ltspice_trans_impedance_amplifier.png)
+
+To ensure good signal quality, several filters have been installed. A bandwidth of 1 Hz is sufficient to extract useful information from the sensor. Three filters have been used: 
+
+- passive filter at the input to prevent HF noise from causing distortion in the input stages: R0, C1, and R1.
+
+
+
+![ltspice_filter_table](images/ltspice_fc_table.png)
+
+
+
 
 ## PCB design on KiCad
 
