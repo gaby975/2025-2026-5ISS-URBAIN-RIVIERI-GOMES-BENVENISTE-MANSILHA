@@ -15,7 +15,7 @@ Ce flow Node-RED écoute un topic MQTT (uplinks ChirpStack), **extrait le champ 
   - Jauge `Actual_Sensor_Value` (0 → 8000, zones vert/jaune/rouge)
   - Courbe `Sensor_value_History` (historique ~1h)
 - **Alerte**
-  - Si `valeur >= 7000` → `DANGER!` + audio + texte 
+  - Si `valeur >= 6000` → `DANGER!` + audio + texte 
 
 ## Prérequis
 
