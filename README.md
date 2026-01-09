@@ -126,8 +126,6 @@ Include in the code:
 #include <rn2xx3.h>
 ```
 
-## Sending data with LoRa
-
 ## Node-RED
 
 The Node-RED flow listens to an MQTT topic (ChirpStack uplinks), **extracts the `data` field**, **decodes it from Base64**, then **converts it to a base-10 number**. The value is displayed on a **dashboard** (gauge + history). A **“DANGER!”** alert (text + audio) is triggered above a threshold.
@@ -168,10 +166,3 @@ npm install node-red-dashboard
 # if needed (if ui_audio is "unknown node type")
 npm install node-red-contrib-ui-audio
 ```
-
-
-## Conclusion
-
-
-
-
