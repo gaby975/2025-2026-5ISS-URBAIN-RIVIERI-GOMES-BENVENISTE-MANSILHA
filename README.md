@@ -72,8 +72,8 @@ The electronic board diagram done, the PCB routing has been done and the goal wa
 
 ## Embedded code
 
-This program (Arduino/ESP32) reads a **gas sensor** on an analog input, computes an estimated value in **PPM**, then sends it to **The Things Network (TTN)** via an **RN2xx3** module using **LoRaWAN OTAA**.
-Transmission happens **every 5 seconds** or **when the button is pressed**. An **LED** indicates sending, and a **buzzer** beeps on each transmission.
+This program (Arduino/ESP32) reads a **gas sensor** on an analog input, computes an estimated value in **PPM**, then sends it to **ChirpStack** via an **RN2483** module using **LoRaWAN OTAA**.
+Transmission happens **every 5 seconds** or **when the button is pressed**. An **LED** indicates sending, and a **buzzer** beeps on each transmission to indicate **SUCCESS** or **FAILURE**.
 
 ---
 
@@ -90,13 +90,13 @@ Transmission happens **every 5 seconds** or **when the button is pressed**. An *
 
 ### Pinout (ESP32 ↔ RN2xx3 / Sensors / I/O)
 
-#### LoRa RN2xx3 (UART2 / Serial2)
+#### LoRa RN2483 (UART2 / Serial2)
 
-| Function   | ESP32 GPIO | Direction      | RN2xx3         |
+| Function   | ESP32 GPIO | Direction      | RN2483         |
 | ---------- | ---------: | -------------- | -------------- |
-| UART2 RX   | **GPIO16** | ESP32 receives | RN2xx3 **TX**  |
-| UART2 TX   | **GPIO17** | ESP32 sends    | RN2xx3 **RX**  |
-| LoRa Reset |  **GPIO4** | output         | RN2xx3 **RST** |
+| UART2 RX   | **GPIO16** | ESP32 receives | RN2483 **TX**  |
+| UART2 TX   | **GPIO17** | ESP32 sends    | RN2483 **RX**  |
+| LoRa Reset |  **GPIO4** | output         | RN2483 **RST** |
 | Power      |   **3.3V** | —              | VCC            |
 | Ground     |    **GND** | —              | GND            |
 
@@ -110,7 +110,7 @@ Transmission happens **every 5 seconds** or **when the button is pressed**. An *
 | Button                  | **GPIO22** | input  | in your code: `INPUT` (often better as `INPUT_PULLUP`) |
 | Buzzer                  | **GPIO23** | output | beep on each send                                      |
 | LED (built-in)          |  **GPIO2** | output | LED on during TX                                       |
-| “Temperature” (current) |  **GPIO2** | ❌      | **Conflict** with LED + **not ADC**                    |
+| “Temperature” (current) |  **GPIO2** | ❌     | **Conflict** with LED + **not ADC**                    |
 
 ---
 
@@ -171,6 +171,7 @@ npm install node-red-contrib-ui-audio
 
 
 ## Conclusion
+
 
 
 
