@@ -67,7 +67,7 @@ The electronic board diagram done, the PCB routing has been done and the goal wa
 
 #### Here is the final PCB layout: 
 
-<img width="712" height="1153" alt="Capture d&#39;écran 2026-01-06 163302" src="https://github.com/user-attachments/assets/fa7053f5-c1f2-408f-9439-61978cafb3b5" />
+<img width="356" height="576.5" alt="Capture d&#39;écran 2026-01-06 163302" src="https://github.com/user-attachments/assets/fa7053f5-c1f2-408f-9439-61978cafb3b5" />
 
 
 ## Embedded code
@@ -171,6 +171,7 @@ npm install node-red-contrib-ui-audio
 
 
 ## Conclusion
+
 
 
 
