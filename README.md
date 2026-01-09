@@ -34,7 +34,9 @@ The Bode diagram of the passive filter at the output of the circuit is as follow
 
 ![ltspice_fc3](images/ltspice_trans_impedance_amplifier_fc3.png)
 
+Finally, we find the following frequency response for the complete setup (gain and phase):
 
+![ltspice_fullbode](images/ltspice_trans_impedance_amplifier_bode.png)
 
 ## PCB design on KiCad
 
