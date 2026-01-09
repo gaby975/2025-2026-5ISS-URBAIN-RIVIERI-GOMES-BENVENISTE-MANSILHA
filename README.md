@@ -24,7 +24,7 @@ To ensure good signal quality, several filters have been installed. A bandwidth 
 - an active filter at the operational amplifier level : R3 and C4.
 - a passive filter at the output of the circuit to remove noise introduced during processing (power supply noise, clock noise) : C2 and R6.
 
-![ltspice_filter_table](images/ltspice_fc_table.png)
+![ltspice_filter_table](images/ltspice_fc_table.PNG)
 
 
 
