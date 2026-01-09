@@ -1,0 +1,8 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Connector")(type "KiCad")(uri "${KIPRJMOD}/Footprint/Connector.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP")(type "KiCad")(uri "${KIPRJMOD}/Footprint/ESP.kicad_sym")(options "")(descr ""))
+  (lib (name "RN2483")(type "KiCad")(uri "${KIPRJMOD}/Footprint/KiCADv6/RN2483.kicad_sym")(options "")(descr ""))
+  (lib (name "LTC")(type "KiCad")(uri "${KIPRJMOD}/Footprint/KiCADv6/LTC.kicad_sym")(options "")(descr ""))
+  (lib (name "New_Library")(type "KiCad")(uri "${KIPRJMOD}/Footprint/New_Library.kicad_sym")(options "")(descr ""))
+)
