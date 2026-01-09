@@ -15,9 +15,6 @@ L’envoi se fait **toutes les 5 secondes** ou **sur appui du bouton**. Une **LE
 - LED intégrée (ou LED externe)
 
 ---
-#Bien sûr — voici un bloc **Pinout** prêt à coller dans ton README (Markdown), basé sur **TON code actuel** (avec la remarque sur le conflit `GPIO2`).
-
----
 
 ## Pinout (ESP32 ↔ RN2xx3 / Capteurs / I/O)
 
