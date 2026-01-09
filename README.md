@@ -42,55 +42,55 @@ The Bode diagram of the passive filter at the output of the circuit is as follow
 
 ## Embedded code
 
-Ce programme (Arduino/ESP32) lit un **capteur de gaz** sur une entrée analogique, calcule une estimation en **PPM**, puis l’envoie sur **The Things Network (TTN)** via un module **RN2xx3** en **LoRaWAN OTAA**.  
-L’envoi se fait **toutes les 5 secondes** ou **sur appui du bouton**. Une **LED** indique l’envoi et un **buzzer** bippe à chaque transmission.
+This program (Arduino/ESP32) reads a **gas sensor** on an analog input, computes an estimated value in **PPM**, then sends it to **The Things Network (TTN)** via an **RN2xx3** module using **LoRaWAN OTAA**.
+Transmission happens **every 5 seconds** or **when the button is pressed**. An **LED** indicates sending, and a **buzzer** beeps on each transmission.
 
 ---
 
-### Matériel requis
+### Required hardware
 
-- ESP32
-- Module LoRa RN2xx3 (RN2483 / RN2903) connecté en UART
-- Capteur de gaz (sortie analogique)
-- Bouton (entrée digitale)
-- Buzzer (sortie digitale)
-- LED intégrée (ou LED externe)
+* ESP32
+* RN2xx3 LoRa module (RN2483 / RN2903) connected via UART
+* Gas sensor (analog output)
+* Button (digital input)
+* Buzzer (digital output)
+* Built-in LED (or external LED)
 
 ---
 
-### Pinout (ESP32 ↔ RN2xx3 / Capteurs / I/O)
+### Pinout (ESP32 ↔ RN2xx3 / Sensors / I/O)
 
 #### LoRa RN2xx3 (UART2 / Serial2)
 
-| Fonction     | ESP32 GPIO | Sens         | RN2xx3            |
-| ------------ | ---------: | ------------ | ----------------- |
-| UART2 RX     | **GPIO16** | ESP32 reçoit | **TX** du RN2xx3  |
-| UART2 TX     | **GPIO17** | ESP32 émet   | **RX** du RN2xx3  |
-| Reset LoRa   |  **GPIO4** | sortie       | **RST** du RN2xx3 |
-| Alimentation |   **3.3V** | —            | VCC               |
-| Masse        |    **GND** | —            | GND               |
+| Function   | ESP32 GPIO | Direction      | RN2xx3         |
+| ---------- | ---------: | -------------- | -------------- |
+| UART2 RX   | **GPIO16** | ESP32 receives | RN2xx3 **TX**  |
+| UART2 TX   | **GPIO17** | ESP32 sends    | RN2xx3 **RX**  |
+| LoRa Reset |  **GPIO4** | output         | RN2xx3 **RST** |
+| Power      |   **3.3V** | —              | VCC            |
+| Ground     |    **GND** | —              | GND            |
 
 ---
 
-#### Capteurs / Bouton / Buzzer / LED
+#### Sensors / Button / Buzzer / LED
 
-| Élément                | ESP32 GPIO | Type   | Remarque                                                  |
-| ---------------------- | ---------: | ------ | --------------------------------------------------------- |
-| Capteur Gaz (analog)   | **GPIO36** | ADC1   | `analogRead(GAS_PIN)`                                     |
-| Bouton                 | **GPIO22** | entrée | dans ton code : `INPUT` (souvent mieux en `INPUT_PULLUP`) |
-| Buzzer                 | **GPIO23** | sortie | bip à chaque envoi                                        |
-| LED (intégrée)         |  **GPIO2** | sortie | LED pendant TX                                            |
-| “Température” (actuel) |  **GPIO2** | ❌      | **Conflit** avec LED + **pas ADC**                        |
+| Element                 | ESP32 GPIO | Type   | Note                                                   |
+| ----------------------- | ---------: | ------ | ------------------------------------------------------ |
+| Gas sensor (analog)     | **GPIO36** | ADC1   | `analogRead(GAS_PIN)`                                  |
+| Button                  | **GPIO22** | input  | in your code: `INPUT` (often better as `INPUT_PULLUP`) |
+| Buzzer                  | **GPIO23** | output | beep on each send                                      |
+| LED (built-in)          |  **GPIO2** | output | LED on during TX                                       |
+| “Temperature” (current) |  **GPIO2** | ❌      | **Conflict** with LED + **not ADC**                    |
 
 ---
 
-### Dépendances
+### Dependencies
 
-#### Librairie Arduino
+#### Arduino library
 
-- `rn2xx3`
+* `rn2xx3`
 
-Import dans le code :
+Include in the code:
 
 ```cpp
 #include <rn2xx3.h>
@@ -98,41 +98,47 @@ Import dans le code :
 
 ## Sending data with LoRa
 
-## NodeRed
+## Node-RED
 
-Le flow Node-RED écoute un topic MQTT (uplinks ChirpStack), **extrait le champ `data`**, le **décode du Base64** puis le **convertit en nombre base 10**. La valeur est affichée sur un **dashboard** (jauge + historique). Une alerte **“DANGER!”** (texte + audio) est déclenchée au-dessus d’un seuil. 
+The Node-RED flow listens to an MQTT topic (ChirpStack uplinks), **extracts the `data` field**, **decodes it from Base64**, then **converts it to a base-10 number**. The value is displayed on a **dashboard** (gauge + history). A **“DANGER!”** alert (text + audio) is triggered above a threshold.
 
-### Fonctionnalités
+### Features
 
-- **MQTT In**
-  - Broker : `srv-chirpstack.insa-toulouse.fr:1883`
-  - Topic : `application/2fc05488-1aaa-49cf-a35a-cf58fae84647/device/0004a30b0110c16d/event/up`
-  - QoS : `2` 
-- **Décodage**
-  - Extraction de `payload.data`
-  - `Base64 -> UTF-8 -> Number (base 10)` 
-- **Dashboard**
-  - Jauge `Actual_Sensor_Value` (0 → 8000, zones vert/jaune/rouge)
-  - Courbe `Sensor_value_History` (historique ~1h)
-- **Alerte**
-  - Si `valeur >= 6000` → `DANGER!` + audio + texte 
+* **MQTT In**
 
-### Prérequis
+  * Broker: `srv-chirpstack.insa-toulouse.fr:1883`
+  * Topic: `application/2fc05488-1aaa-49cf-a35a-cf58fae84647/device/0004a30b0110c16d/event/up`
+  * QoS: `2`
+* **Decoding**
 
-- Node-RED installé
-- Accès réseau au broker MQTT
-- Modules Node-RED :
-  - `node-red-dashboard` (le flow indique une config en **3.6.6**) 
-  - Le node `ui_audio` peut nécessiter un module additionnel selon ton install (souvent `node-red-contrib-ui-audio`). 
+  * Extract `payload.data`
+  * `Base64 -> UTF-8 -> Number (base 10)`
+* **Dashboard**
 
-Installation (exemple) :
+  * Gauge `Actual_Sensor_Value` (0 → 8000, green/yellow/red zones)
+  * Chart `Sensor_value_History` (~1h history)
+* **Alert**
+
+  * If `value >= 6000` → `DANGER!` + audio + text
+
+### Prerequisites
+
+* Node-RED installed
+* Network access to the MQTT broker
+* Node-RED modules:
+
+  * `node-red-dashboard` (the flow indicates config **3.6.6**)
+  * The `ui_audio` node may require an additional module depending on your setup (often `node-red-contrib-ui-audio`)
+
+Example installation:
 
 ```bash
 cd ~/.node-red
 npm install node-red-dashboard
-# si besoin (si ui_audio est "unknown node type")
+# if needed (if ui_audio is "unknown node type")
 npm install node-red-contrib-ui-audio
 ```
+
 
 ## Conclusion
 
