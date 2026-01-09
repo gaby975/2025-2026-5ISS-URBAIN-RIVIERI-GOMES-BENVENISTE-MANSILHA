@@ -40,8 +40,6 @@ Finally, we find the following frequency response for the complete setup (gain a
 
 ## PCB design on KiCad
 
-## Fabrication of the Shield
-
 ## Embedded code
 
 This program (Arduino/ESP32) reads a **gas sensor** on an analog input, computes an estimated value in **PPM**, then sends it to **The Things Network (TTN)** via an **RN2xx3** module using **LoRaWAN OTAA**.
